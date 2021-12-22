@@ -1,0 +1,44 @@
+<!--================ admin header Area =================-->
+
+<%- include('../partials/admin/adminheader')%>
+
+    <!--================ end admin header Area =================-->
+    <!--================ admin nav Area =================-->
+
+    <%- include('../partials/admin/adminnav')%>
+
+        <!--================ end admin nav Area =================-->
+        <!--================ admin aside Area =================-->
+
+        <%- include('../partials/admin/adminaside')%>
+
+            <!--================ end admin aside Area =================-->
+            <!-- main -->
+            <main id="main" class="main">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= locals.title %>
+                        </h5>
+
+                        <!-- TinyMCE Editor -->
+                        <textarea class="tinymce-editor">
+                <p>Hello World!</p>
+                <p>This is TinyMCE <strong>full</strong> editor</p>
+              </textarea><!-- End TinyMCE Editor -->
+
+                    </div>
+                </div>
+
+
+
+            </main>
+
+
+            <!-- End #main -->
+
+            <!--================ admin footer Area =================-->
+
+            <%- include('../partials/admin/adminfooter')%>
+                <!--================ end admin footer Area =================-->
