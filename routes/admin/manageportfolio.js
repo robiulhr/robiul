@@ -6,6 +6,6 @@ var router = express.Router()
 const manageportfolioController = require('../../controller/admin/manageportfolio')
 
 router.get('/', manageportfolioController.manageportfolioGetreq)
-router.post('/', manageportfolioController.manageportfolioPostreq)
+router.post('/:id', manageportfolioController.manageportfolioPostreq)
 
 module.exports = router

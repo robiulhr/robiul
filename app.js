@@ -1,10 +1,12 @@
 const express = require('express')
-const bodyParser = require('body-parser');
 const app = express()
+require('pretty-error').start();
+const bodyParser = require('body-parser');
+const multer = require('multer')
 require('dotenv').config()
 const morgan = require('morgan')
 app.use(morgan('short'))
-
+const path = require('path')
 const PORT = process.env.PORT || 3000
 
 // form data access
@@ -15,6 +17,7 @@ app.set('view engine', 'ejs')
 // static files
 app.use(express.static('public'))
 app.use('/admin/', express.static('public'))
+app.use('/admin/manageportfolio/', express.static('public'))
 
 // mongodb connection
 const DB_URL = process.env.DB_URL
@@ -50,7 +53,7 @@ const managemessageRoutes = require('./routes/admin/managemessage')
 app.use('/admin', adminRoutes)
 app.use('/admin/login', adminloginRoutes)
 app.use('/admin/register', adminregisterRoutes)
-app.use('/admin/manageportfolio', manageportfolioRoutes)
+app.use('/admin/manageportfolio/:id', manageportfolioRoutes)
 app.use('/admin/createportfolio', createportfolioRoutes)
 app.use('/admin/editportfolio', editportfolioRoutes)
 app.use('/admin/profile', adminprofileRoutes)

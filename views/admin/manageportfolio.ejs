@@ -26,70 +26,98 @@
                             </nav>
                         </div>
                         <div class="col-2">
-                            <a type="button" class="btn btn-success " href="/admin/createpotfolio">Add New</a>
+                            <a type="button" class="btn btn-success " href="/admin/createportfolio">Add New</a>
                         </div>
                     </div><!-- End Page Title -->
 
                     <section class="section dashboard">
                         <div class="row">
-                            <div class="dataTable-top">
-                                <div class="dataTable-dropdown"><label><select class="dataTable-selector">
-                                            <option value="5">5</option>
-                                            <option value="10" selected="">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="25">25</option>
-                                        </select> entries per page</label></div>
-                                <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..."
-                                        type="text">
+                            <!-- ============================== logic ======================== -->
+                            <%if (locals.portfolios ) { %>
+
+                                <div class="dataTable-top">
+
+                                    <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..."
+                                            type="text">
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Table with stripped rows -->
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Catagory</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Short Description</th>
-                                        <th scope="col">Created At</th>
-                                        <th scope="col">Last updated</th>
-                                        <th scope="col">Edit</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Personal</td>
-                                        <td><img src="admin/img/logo.png" alt=""></td>
-                                        <td>Blog app</td>
-                                        <td>Personal Blog</td>
-                                        <td>2016-05-25</td>
-                                        <td>2016-05-25</td>
-                                        <td>
-                                            <a type="button" class="btn btn-outline-primary "
-                                                href="/admin/editportfolio">Edit</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Personal</td>
-                                        <td><img src="admin/img/logo.png" alt=""></td>
-                                        <td>Blog app</td>
-                                        <td>Personal Blog</td>
-                                        <td>2016-05-25</td>
-                                        <td>2016-05-25</td>
-                                        <td>
-                                            <a type="button" class="btn btn-outline-primary "
-                                                href="/admin/editportfolio">Edit</a>
-                                        </td>
-                                    </tr>
+                                <!-- Table with stripped rows -->
+                                <table class="table table-striped">
+                                    <div class="mb-1">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Catagory</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Short Description</th>
+                                                <th scope="col">Created At</th>
+                                                <th scope="col">Last updated</th>
+                                                <th scope="col">Edit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% locals.portfolios.forEach((element,id)=> {%>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%=id + 1%>
+                                                    </th>
+                                                    <td>
+                                                        <%=locals.portfolios[id].catagory[0]%>
+                                                    </td>
+                                                    <td><img src=" <%=locals.portfolios[id].portfolioimage%>" alt="">
+                                                    </td>
+                                                    <td>
+                                                        <%=locals.portfolios[id].portfolioTitle%>
+                                                    </td>
+                                                    <td>
+                                                        <%=locals.portfolios[id].inputTextarea%>
+                                                    </td>
+                                                    <td>
+                                                        <%= locals.portfolios[id].createdTime%>
+                                                    </td>
+                                                    <td>
+                                                        <%=locals.portfolios[id].updatedAt%>
+                                                    </td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-outline-primary "
+                                                            href="/admin/editportfolio">Edit</a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
 
+                                        </tbody>
+                                    </div>
 
-                                </tbody>
-                            </table>
-                            <!-- End Table with stripped rows -->
+                                </table>
+                                <!-- End Table with stripped rows -->
+                                <!-- Pagination with icons -->
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!-- End Pagination with icons -->
+                                <% } %>
+                                    <!-- ============================== logic ======================== -->
+                                    <%if (locals.noportfolios ) { %>
+                                        <div class="m-3">
+                                            <h1>
+                                                <%= locals.noportfolios %>
+                                            </h1>
+                                        </div>
+                                        <% } %>
+
                         </div>
                     </section>
 
